@@ -38,35 +38,13 @@
     .cloud-part:nth-child(2) { width: 100px; height: 60px; left: 30px; top: -20px; }
     .cloud-part:nth-child(3) { width: 100px; height: 60px; left: 60px; top: 0; }
 
-    #car {
-      position: absolute;
-      width: 120px;
-      height: 50px;
-      background: linear-gradient(to right, #FF0000, #AA0000);
-      top: 370px;
-      left: 0;
-      border-radius: 10px;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    }
-
-    .wheel {
-      position: absolute;
-      background: radial-gradient(circle, #333, #000);
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      bottom: -12px;
-    }
-
-    .wheel.left { left: 15px; }
-    .wheel.right { right: 15px; }
-
     #road {
       position: absolute;
       bottom: 0;
       width: 100%;
       height: 100px;
       background: #444;
+      z-index: 1;
     }
 
     .lane {
@@ -82,6 +60,30 @@
       0% { left: 100%; }
       100% { left: -40px; }
     }
+
+    #car {
+      position: absolute;
+      width: 120px;
+      height: 50px;
+      background: linear-gradient(to right, #FF0000, #AA0000);
+      bottom: 100px; /* sits right above the road */
+      left: 0;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      z-index: 2;
+    }
+
+    .wheel {
+      position: absolute;
+      background: radial-gradient(circle, #333, #000);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      bottom: -12px;
+    }
+
+    .wheel.left { left: 15px; }
+    .wheel.right { right: 15px; }
   </style>
 </head>
 <body>
@@ -96,7 +98,6 @@
     <div class="wheel right"></div>
   </div>
   <div id="road">
-    <!-- Lane markers -->
     <div class="lane" style="animation-delay: 0s;"></div>
     <div class="lane" style="animation-delay: 0.5s;"></div>
     <div class="lane" style="animation-delay: 1s;"></div>
