@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 /**
  * Fun Kids Animation using Multithreading
@@ -50,58 +49,60 @@ public class KidsAnimation extends JFrame {
             // Cloud
             g.setColor(Color.WHITE);
             g.fillOval(cloudX, cloudY, 100, 60);
-            g.fillOval(cloudX + 40, cloudY - 20, 100, 60);
-            g.fillOval(cloudX + 80, cloudY, 100, 60);
-
-            // Grass
-            g.setColor(Color.GREEN);
-            g.fillRect(0, getHeight() - 100, getWidth(), 100);
+            g.fillOval(cloudX + 30, cloudY - 20, 100, 60);
+            g.fillOval(cloudX + 60, cloudY, 100, 60);
 
             // Car
             g.setColor(Color.RED);
-            g.fillRect(carX, carY, 120, 50);
+            g.fillRect(carX, carY, 100, 50);
             g.setColor(Color.BLACK);
-            g.fillOval(carX + 10, carY + 40, 30, 30);
-            g.fillOval(carX + 80, carY + 40, 30, 30);
+            g.fillOval(carX + 10, carY + 40, 20, 20);
+            g.fillOval(carX + 70, carY + 40, 20, 20);
         }
 
-        // ================= THREADS =================
+        // ================== THREADS =====================
         class SunThread implements Runnable {
             public void run() {
-                try {
-                    while (true) {
-                        sunX += 2;
-                        if (sunX > getWidth()) sunX = -80;
-                        repaint();
-                        Thread.sleep(50);
+                while (true) {
+                    sunX += 1;
+                    if (sunX > getWidth()) sunX = -100;
+                    repaint();
+                    try {
+                        Thread.sleep(50); // Slowest
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } catch (InterruptedException ignored) {}
+                }
             }
         }
 
         class CloudThread implements Runnable {
             public void run() {
-                try {
-                    while (true) {
-                        cloudX += 1;
-                        if (cloudX > getWidth()) cloudX = -200;
-                        repaint();
-                        Thread.sleep(80);
+                while (true) {
+                    cloudX += 2;
+                    if (cloudX > getWidth()) cloudX = -150;
+                    repaint();
+                    try {
+                        Thread.sleep(40); // Medium speed
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } catch (InterruptedException ignored) {}
+                }
             }
         }
 
         class CarThread implements Runnable {
             public void run() {
-                try {
-                    while (true) {
-                        carX += 5;
-                        if (carX > getWidth()) carX = -150;
-                        repaint();
-                        Thread.sleep(40);
+                while (true) {
+                    carX += 3;
+                    if (carX > getWidth()) carX = -200;
+                    repaint();
+                    try {
+                        Thread.sleep(30); // Fastest
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } catch (InterruptedException ignored) {}
+                }
             }
         }
     }
